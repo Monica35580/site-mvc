@@ -1,0 +1,153 @@
+/* ------------------------ styles lies au systeme d'affichage de messages ---------------------------- */
+
+/* mise en forme de la boite d'affichage du message */
+.classe_message > div {
+	width: 500px;
+	background: #fff;
+	position: relative;
+	margin: 10% auto;
+	padding: 30px;
+	text-shadow: 0 1px 0 #fff;			
+	
+	/* coins arrondis */
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	-o-border-radius: 7px;
+	-ms-border-radius: 7px;
+	-khtml-border-radius: 7px;
+	border-radius: 7px;
+	
+	/* ombre portÃ©e */
+	-webkit-box-shadow: 0 3px 20px rgba(0, 0, 0, 0.9);
+	-moz-box-shadow: 0 3px 20px rgba(0, 0, 0, 0.9);
+	-o-box-shadow: 0 3px 20px rgba(0, 0, 0, 0.9);
+	box-shadow: 0 3px 20px rgba(0, 0, 0, 0.9);
+	
+	/* fond avec un dÃ©gradÃ© de couleur (blanc en haut, gris en bas) */	
+	background: -moz-linear-gradient(top, rgb(255, 255, 255), rgb(210, 210, 210));
+	background: -webkit-gradient(linear, right top, right bottom, from(rgb(255, 255, 255)), to(rgb(210, 210, 210)));
+	background: linear-gradient(to bottom, rgb(255, 255, 255), rgb(210, 210, 210));
+}
+
+/* style du titre du message d'avertissement et son icone */
+#affichage_message h2.classe_avertissement {
+	padding-left: 50px;
+	line-height: 32px;
+	background: url(images/avertissement.png) no-repeat left bottom;
+	color: #0b4c8e;
+}
+
+/* style du titre du message d'information et son icone */
+#affichage_message h2.classe_information {
+	padding-left: 50px;
+	line-height: 32px;
+	background: url(images/information.png) no-repeat left bottom;
+	color: #0b4c8e;
+}
+
+/* style du message */
+#affichage_message p.classe_texte_message {
+	padding-left: 50px;
+	font-size: 1.2em;
+}
+
+/* style du lien de fermeture */
+.classe_message a {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	color: #000;
+}
+
+/* le conteneur qui va recouvrir la page */
+.classe_message {
+	/* on occupe tout l'espace */
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	/* un fond noir avec une transparence de 30% */
+	background: rgba(0, 0, 0, 0.3);
+	/* le conteneur est placÃ© sur la page */
+	z-index: 10000;
+	
+	/* utilisation de la transformation de transparence Ã  l'ouverture */
+	-webkit-transition: opacity 500ms ease-in;
+	-moz-transition: opacity 500ms ease-in;
+	-o-transition: opacity 500ms ease-in;
+	transition: opacity 500ms ease-in;
+	
+	/* au chargement de la page, le conteneur est transparent */
+	opacity: 0;
+	/* et on ne peut pas cliquer sur ses Ã©lÃ©ments */
+	pointer-events: none;
+}
+
+/* quand le conteneur est ciblÃ©, il devient opaque */
+.classe_message:target {
+	opacity: 1;
+	/* et on peut maintenant cliquer sur ses Ã©lÃ©ments */
+	pointer-events: auto;
+}
+
+/* animation Ã  l'ouverture de la boÃ®te de message */
+@-webkit-keyframes animation_ouverture {
+	0% { -webkit-transform: scale3d(0.1, 0.1, 1); -webkit-box-shadow: 0 3px 20px rgba(0, 0, 0, 0.9); }
+	55% { -webkit-transform: scale3d(1.08, 1.08, 1); -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0); }
+	75% { -webkit-transform: scale3d(0.95, 0.95, 1); -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.9); }
+	100% { -webkit-transform: scale3d(1, 1, 1); -webkit-box-shadow: 0 3px 20px rgba(0, 0, 0, 0.9); }	
+}
+@-moz-keyframes animation_ouverture {
+	0% { -moz-transform: scale3d(0.1, 0.1, 1); -moz-box-shadow: 0 3px 20px rgba(0, 0, 0, 0.9); }
+	55% { -moz-transform: scale3d(1.08, 1.08, 1); -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0); }
+	75% { -moz-transform: scale3d(0.95, 0.95, 1); -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.9); }
+	100% { -moz-transform: scale3d(1, 1, 1); -moz-box-shadow: 0 3px 20px rgba(0, 0, 0, 0.9); }	
+}
+@-o-keyframes animation_ouverture {
+	0% { -o-transform: scale3d(0.1, 0.1, 1); -o-box-shadow: 0 3px 20px rgba(0, 0, 0, 0.9); }
+	55% { -o-transform: scale3d(1.08, 1.08, 1); -o-box-shadow: 0 10px 20px rgba(0, 0, 0, 0); }
+	75% { -o-transform: scale3d(0.95, 0.95, 1); -o-box-shadow: 0 0 20px rgba(0, 0, 0, 0.9); }
+	100% { -o-transform: scale3d(1, 1, 1); -o-box-shadow: 0 3px 20px rgba(0, 0, 0, 0.9); }	
+}
+@keyframes animation_ouverture {
+	0% { transform: scale3d(0.1, 0.1, 1); box-shadow: 0 3px 20px rgba(0, 0, 0, 0.9); }
+	55% { transform: scale3d(1.08, 1.08, 1); box-shadow: 0 10px 20px rgba(0, 0, 0, 0); }
+	75% { transform: scale3d(0.95, 0.95, 1); box-shadow: 0 0 20px rgba(0, 0, 0, 0.9); }
+	100% { transform: scale3d(1, 1, 1); box-shadow: 0 3px 20px rgba(0, 0, 0, 0.9); }	
+}
+
+/* declenchement de l'animation d'ouverture */
+.classe_message:target > div {
+	-webkit-animation: animation_ouverture 1000ms linear;
+	-moz-animation: animation_ouverture 1000ms linear;
+	-o-animation: animation_ouverture 1000ms linear;
+	animation: animation_ouverture 1000ms linear;
+}
+
+/* animation Ã  la fermeture de la boÃ®te de message */
+@-webkit-keyframes animation_fermeture {
+	0% { -webkit-transform: scale3d(1, 1, 1); }
+	100% { -webkit-transform: scale3d(0.1, 0.1, 1); }
+}
+@-moz-keyframes animation_fermeture {
+	0% { -moz-transform: scale3d(1, 1, 1); }
+	100% { -moz-transform: scale3d(0.1, 0.1, 1); }
+}
+@-o-keyframes animation_fermeture {
+	0% { -o-transform: scale3d(1, 1, 1); }
+	100% { -o-transform: scale3d(0.1, 0.1, 1); }
+}
+@keyframes animation_fermeture {
+	0% { transform: scale3d(1, 1, 1); }
+	100% { transform: scale3d(0.1, 0.1, 1); }
+}
+
+/* dÃ©clenchement de l'animation de fermeture */
+.classe_message > div {
+	-webkit-animation: animation_fermeture 500ms linear;
+	-moz-animation: animation_fermeture 500ms linear;
+	-o-animation: animation_fermeture 500ms linear;
+	animation: animation_fermeture 500ms linear;
+}
+
